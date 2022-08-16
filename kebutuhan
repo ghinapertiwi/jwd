@@ -1,0 +1,37 @@
+login
+aksi_login
+pemesan
+aksi_pemesan
+pemesanan
+aksi_pemesanan
+edit_pemesanan
+aksi_edit_pemesanan
+aksi_hapus_pemesanan
+aksi_proses_pemesanan
+aksi_cetak_pemesanan
+aksi_diambil_pemesanan
+
+tampilan
+/ login
+/ pemesan
+- masuk
+- memesan
+- tabel
+--detail
+--hapus
+--edit
+/ pemesanan
+
+
+
+
+
+function
+- aksi_login
+- aksi_pemesan
+- aksi_pemesanan
+- aksi_edit_pemesanan
+- aksi_hapus_pemesanan
+- aksi_proses_pemesanan
+- aksi_cetak_pemesanan
+- aksi_diambil_pemesanan

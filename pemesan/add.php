@@ -37,7 +37,7 @@
         include_once("config.php");
                 
         // Insert user data into table
-        $result = mysqli_query($mysqli, "INSERT INTO users(name,email,mobile) VALUES('$nama','$no_hp')");
+        $result = mysqli_query($mysqli, "INSERT INTO tb_pemesan(nama,no_hp) VALUES('$nama','$no_hp')");
         
         // Show message when user added
         echo "User added successfully. <a href='index.php'>View Users</a>";

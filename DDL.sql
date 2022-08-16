@@ -1,6 +1,6 @@
 
 CREATE TABLE tb_admin (
-    id_admin int,
+    id_admin int AUTO_INCREMENT,
     nama varchar(50),
     no_hp varchar(13),
     username varchar(20),
@@ -9,14 +9,14 @@ CREATE TABLE tb_admin (
 );
 
 CREATE TABLE tb_pemesan (
-    id_pemesan int,
+    id_pemesan int AUTO_INCREMENT,
     no_hp varchar(13),
     nama varchar(50),
     PRIMARY KEY (id_pemesan)
 );
 
 CREATE TABLE tb_pemesanan_undangan_pernikahan (
-    id_pemesanan int,
+    id_pemesanan int AUTO_INCREMENT,
     id_pemesan int,
     tgl_pemesanan date,
     nama_pengantin_putra varchar(50),

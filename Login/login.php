@@ -1,19 +1,28 @@
 <?php 
+
 include 'config.php';
  
-$username = $_POST['username'];
-$password = md5($_POST['password']);
+error_reporting(0);
  
-$login = mysql_query("select * from user where username='$username' and password='$password'");
-$cek = mysql_num_rows($login);
+session_start();
  
-if($cek > 0){
-	session_start();
-	$_SESSION['username'] = $username;
-	$_SESSION['status'] = "login";
+if (isset($_SESSION['username'])) {
 	header("location:admin/index.php");
-}else{
-	header("location:index.php");	
 }
  
+if (isset($_POST['submit'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+ 
+    $sql = "SELECT * FROM tb_admin WHERE username='$username' AND password='$password'";
+    $result = mysqli_query($conn, $sql);
+    if ($result->num_rows > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $_SESSION['username'] = $row['username'];
+		header("location:admin/index.php");
+    } else {
+        echo "<script>alert('username atau password Anda salah. Silahkan coba lagi!')</script>";
+    }
+}
+// var_dump($_SESSION['username']);
 ?>

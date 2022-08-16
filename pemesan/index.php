@@ -1,9 +1,9 @@
 <?php
 // Create database connection using config file
-include_once("config.php");
+include "config.php";
  
 // Fetch all users data from database
-$result = mysqli_query($mysqli, "SELECT * FROM users ORDER BY id DESC");
+$result = mysqli_query($mysqli, "SELECT * FROM tb_pemesan");
 ?>
  
 <html>
@@ -13,9 +13,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM users ORDER BY id DESC");
  
 <body>
 
- 
     <table width='80%' border=1>
- 
     <tr>
         <th>Nama</th> <th>No Hp</th>
     </tr>
@@ -24,7 +22,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM users ORDER BY id DESC");
         echo "<tr>";
         echo "<td>".$user_data['nama']."</td>";
         echo "<td>".$user_data['no_hp']."</td>";  
-        echo "<td><a href='edit.php?id=$user_data[id]'>Edit</a> | <a href='delete.php?id=$user_data[id]'>Delete</a></td></tr>";        
+        echo "<td><a href='edit.php?id=$user_data[id_pemesan]'>Edit</a> | <a href='delete.php?id=$user_data[id_pemesan]'>Delete</a></td></tr>";        
     }
     ?>
     </table>

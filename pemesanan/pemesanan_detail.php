@@ -68,6 +68,12 @@
                   <label >Nama Orang tua Pengantin Laki-laki</label>
                   <input type="text" class="form-control" placeholder="1234 Main St">
                 </div>
+                <div class="form-group">
+                    <label >Tanggal</label><br>
+                    <input type="date" class="form-control" id="start" name="trip-start"
+                      value="2022-01-01"
+                      min="2022-01-01" max="2024-12-31">
+                  </div>
               </div>
               <div class="col">
                 <div class="form-group">
@@ -78,30 +84,20 @@
                     <label >Nama Orang tua Pengantin Perempuan</label>
                     <input type="text" class="form-control" placeholder="1234 Main St">
                   </div>
+                  <div class="form-group">
+                    <label >Waktu</label><br>
+                    <input type="time" class="form-control" id="appt" name="appt"
+                    min="08:00" max="18:00" required>
+                  </div>
               </div>
             </div>
+              
             
             <div class="form-group">
-              <label >Address</label>
-              <input type="text" class="form-control" placeholder="Apartment, studio, or floor">
+              <label >Alamat</label><br>
+              <textarea name="alamat" rows="3" cols="125"></textarea>
             </div>
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label >City</label>
-                <input type="text" class="form-control">
-              </div>
-              <div class="form-group col-md-4">
-                <label >State</label>
-                <select class="form-control">
-                  <option selected>Choose...</option>
-                  <option>...</option>
-                </select>
-              </div>
-              <div class="form-group col-md-2">
-                <label >Zip</label>
-                <input type="text" class="form-control">
-              </div>
-            </div>
+
             <div class="form-group">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox">

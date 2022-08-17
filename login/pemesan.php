@@ -6,27 +6,26 @@ error_reporting(0);
  
 session_start();
  
-if (isset($_SESSION['username'])) {
-    header("Location: berhasil_login.php");
+if (isset($_SESSION['no_hp'])) {
+    header("Location: ../dashboard.php");
 }
  
 if (isset($_POST['submit'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    $no_hp = $_POST['no_hp'];
+    $nama = $_POST['nama'];
  
-    $sql = "SELECT * FROM tb_admin WHERE username='$username' AND password='$password'";
+    $sql = "SELECT * FROM tb_pemesan WHERE no_hp='$no_hp' AND nama='$nama'";
     $result = mysqli_query($conn, $sql);
     if ($result->num_rows > 0) {
         $row = mysqli_fetch_assoc($result);
-        $_SESSION['username'] = $row['username'];
-        header("Location: berhasil_login.php");
+        $_SESSION['no_hp'] = $row['no_hp'];
+        header("Location: ../dashboard.php");
     } else {
-        echo "<script>alert('username atau password Anda salah. Silahkan coba lagi!')</script>";
+        echo "<script>alert('No HP atau Nama Anda salah. Silahkan coba lagi!')</script>";
     }
 }
  
 ?>
- 
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,17 +45,19 @@ if (isset($_POST['submit'])) {
  
     <div class="container">
         <form action="" method="POST" class="login-email">
-            <p class="login-text" style="font-size: 2rem; font-weight: 800;">Login</p>
+            <p class="login-text" style="font-size: 2rem; font-weight: 800;">Pemesan</p>
             <div class="input-group">
-                <input type="username" placeholder="username" name="username" value="<?php echo $username; ?>" required>
+                <input type="no_hp" placeholder="No HP" name="no_hp" value="<?php echo $no_hp; ?>" required>
             </div>
             <div class="input-group">
-                <input type="password" placeholder="Password" name="password" value="<?php echo $_POST['password']; ?>" required>
+                <input type="nama" placeholder="Nama" name="nama" value="<?php echo $_POST['nama']; ?>" required>
             </div>
             <div class="input-group">
                 <button name="submit" class="btn">Login</button>
             </div>
         </form>
+        <a href="../admin/login/index.php"  class="btn">Login sebagai admin</a>
+        
     </div>
 </body>
 </html>

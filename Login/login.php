@@ -1,28 +1,28 @@
 <?php 
-
+ 
 include 'config.php';
  
 error_reporting(0);
  
 session_start();
  
-if (isset($_SESSION['username'])) {
-	header("location:admin/index.php");
+if (isset($_SESSION['no_hp'])) {
+    header("Location: ../dashboard.php");
 }
  
 if (isset($_POST['submit'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    $no_hp = $_POST['no_hp'];
+    $nama = $_POST['nama'];
  
-    $sql = "SELECT * FROM tb_admin WHERE username='$username' AND password='$password'";
+    $sql = "SELECT * FROM tb_pemesan WHERE no_hp='$no_hp' AND nama='$nama'";
     $result = mysqli_query($conn, $sql);
     if ($result->num_rows > 0) {
         $row = mysqli_fetch_assoc($result);
-        $_SESSION['username'] = $row['username'];
-		header("location:admin/index.php");
+        $_SESSION['no_hp'] = $row['no_hp'];
+        header("Location: ../dashboard.php");
     } else {
-        echo "<script>alert('username atau password Anda salah. Silahkan coba lagi!')</script>";
+        echo "<script>alert('No HP atau Nama Anda salah. Silahkan coba lagi!')</script>";
     }
 }
-// var_dump($_SESSION['username']);
+ 
 ?>

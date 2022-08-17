@@ -1,8 +1,4 @@
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -66,7 +62,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       <td>Tokyo</td>
                       <td>Tokyo</td>
                       <td>
-                        <a href="detail_pemesanan.php" class="btn btn-dark">Detail</a>
+                        <a href="pemesanan_detail.php" class="btn btn-dark">Detail</a>
                         <a href="#" class="btn btn-dark">Konfirmasi Proses</a>
                         <!-- <a href="#" class="btn btn-dark">Cetak</a>
                         <a href="#" class="btn btn-dark">Selesai</a> -->

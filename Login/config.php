@@ -1,10 +1,14 @@
-<?php
+<?php 
  
-$databaseHost = 'localhost';
-$databaseName = 'percetakan';
-$databaseUsername = 'root';
-$databasePassword = '';
+$server = "localhost";
+$user = "root";
+$pass = "";
+$database = "percetakan";
  
-$mysqli = mysqli_connect($databaseHost, $databaseUsername, $databasePassword, $databaseName); 
-
+$conn = mysqli_connect($server, $user, $pass, $database);
+ 
+if (!$conn) {
+    die("<script>alert('Gagal tersambung dengan database.')</script>");
+}
+ 
 ?>

@@ -1,3 +1,16 @@
+<?php 
+include '../config.php';
+session_start();
+
+$id=$_GET['id'];
+$query = "SELECT * FROM tb_pemesan where id_pemesan='$id'";
+$result = mysqli_query($mysqli, $query);
+foreach ($result as $data) {
+  
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -95,18 +108,9 @@
             
             <div class="form-group">
               <label >Alamat</label><br>
-              <textarea name="alamat" rows="3" cols="125"></textarea>
+              <textarea class="form-control" name="alamat" rows="3"></textarea>
             </div>
-
-            <div class="form-group">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox">
-                <label class="form-check-label" >
-                  Check me out
-                </label>
-              </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Sign in</button>
+            <button type="submit" class="btn btn-primary">Edit</button>
           </form>
                             
 

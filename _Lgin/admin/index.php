@@ -10,7 +10,7 @@ if($_SESSION['status'] !="login"){
 }
  
 // menampilkan pesan selamat datang
-echo "Hai, selamat datang ". $_SESSION['username'];
+echo "Hai, selamat datang ". $_SESSION['id_admin'];
  
 ?>
 <br/>

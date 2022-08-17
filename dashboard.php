@@ -1,13 +1,38 @@
+<?php 
+include 'config.php';
+session_start();
+
+
+if (isset($_SESSION['id_pemesan'])) {
+  $id = $_SESSION['id_pemesan'];
+  $query = "SELECT * FROM tb_pemesan where id_pemesan='$id'";
+  $login = mysqli_query($mysqli, $query);
+  foreach ($login as $data) {
+    $id =  $data['id_pemesan'];
+    $nama =  $data['nama'];
+    $no_hp = $data['no_hp'];
+  }
+}
+
+if (isset($_SESSION['id_admin'])) {
+  $id = $_SESSION['id_admin'];
+  $query = "SELECT * FROM tb_admin where id_admin='$id'";
+  $login = mysqli_query($mysqli, $query);
+  foreach ($login as $data) {
+    $id =  $data['id_admin'];
+    $username =  $data['username'];
+    $nama =  $data['nama'];
+    $no_hp = $data['no_hp'];
+  }
+}
+?>
+
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pemesanan Undangan</title>
+  <title>Pemesanan Undangan Pernikahan</title>
 
 
   <?php include 'view/template/css.php';  ?>
@@ -46,11 +71,30 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- //////////////////////////////////////////////////// -->
         <div class="card">
           <div class="card-body d-flex">
+            <div class="mr-auto">
 
-            <h2>Selamat Datang</h2>
+              <h2>Selamat Datang, <b><?= $nama; ?></b></h2>
+              <br>
+              <?php
+              if (isset($_SESSION['id_admin'])) {
+                echo $username;
+              }
+              ?>
+              <p>No. HP = <?= $no_hp; ?></p>
+            </div>
             <div class="ml-auto">
-              <a href="pemesan.php" class="btn btn-dark">Data Pemesan</a>
-              <a href="pemesanan.php" class="btn btn-dark">Data Pemesanan</a>
+              <?php
+              if (isset($_SESSION['id_admin'])){
+                echo "
+                <a href='/pemesanan/pemesanan.php' class='btn btn-dark'>Data Pemesanan</a>
+                ";
+              }elseif (isset($_SESSION['id_pemesan'])) {
+                echo "
+                <a href='/pemesanan/pemesanan.php' class='btn btn-dark'>Data Pemesananku</a>
+                <a href='/pemesanan/pemesanan_tambah.php' class='btn btn-dark'>Tambah Pemesanan</a>
+                ";
+              }
+              ?>
             </div>
 
             </div>

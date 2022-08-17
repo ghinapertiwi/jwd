@@ -6,7 +6,7 @@ error_reporting(0);
  
 session_start();
  
-if (isset($_SESSION['username'])) {
+if (isset($_SESSION['id_admin'])) {
 	header("location:admin/index.php");
 }
  
@@ -18,7 +18,7 @@ if (isset($_POST['submit'])) {
     $result = mysqli_query($conn, $sql);
     if ($result->num_rows > 0) {
         $row = mysqli_fetch_assoc($result);
-        $_SESSION['username'] = $row['username'];
+        $_SESSION['id_admin'] = $row['username'];
 		header("location:admin/index.php");
     } else {
         echo "<script>alert('username atau password Anda salah. Silahkan coba lagi!')</script>";

@@ -6,7 +6,7 @@ error_reporting(0);
  
 session_start();
  
-if (isset($_SESSION['no_hp'])) {
+if (isset($_SESSION['id_pemesan'])) {
     header("Location: ../dashboard.php");
 }
  
@@ -18,10 +18,13 @@ if (isset($_POST['submit'])) {
     $result = mysqli_query($conn, $sql);
     if ($result->num_rows > 0) {
         $row = mysqli_fetch_assoc($result);
-        $_SESSION['no_hp'] = $row['no_hp'];
+        $_SESSION['id_pemesan'] = $row['id_pemesan'];
         header("Location: ../dashboard.php");
     } else {
-        echo "<script>alert('No HP atau Nama Anda salah. Silahkan coba lagi!')</script>";
+        $result = mysqli_query($conn, "INSERT INTO `tb_pemesan`(`no_hp`, `nama`) VALUES ('$no_hp','$nama')");
+        $_SESSION['no_hp'] = $no_hp;
+        $_SESSION['nama'] = $nama;
+        header("Location: pemesan.php");
     }
 }
  
@@ -36,7 +39,7 @@ if (isset($_POST['submit'])) {
  
     <link rel="stylesheet" type="text/css" href="style.css">
  
-    <title>Niagahoster Tutorial</title>
+    <title>Pemesanan Undangan Pernikahan</title>
 </head>
 <body>
     <div class="alert alert-warning" role="alert">
@@ -53,10 +56,10 @@ if (isset($_POST['submit'])) {
                 <input type="nama" placeholder="Nama" name="nama" value="<?php echo $_POST['nama']; ?>" required>
             </div>
             <div class="input-group">
-                <button name="submit" class="btn">Login</button>
+                <button name="submit" class="btn">Memesan</button>
             </div>
         </form>
-        <a href="../admin/login/index.php"  class="btn">Login sebagai admin</a>
+        <a href="admin.php"  class="btn">Login sebagai admin</a>
         
     </div>
 </body>

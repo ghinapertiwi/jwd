@@ -15,20 +15,20 @@
         <!-- Left navbar links -->
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a href="index.php" class="nav-link">Home</a>
+            <a href="../../" class="nav-link">Home</a>
           </li>
           <!-- <li class="nav-item">
             <a href="pemesan.php" class="nav-link">Pemesan</a>
           </li> -->
           <li class="nav-item">
-            <a href="pemesanan.php" class="nav-link">Pemesanan</a>
+            <a href="../../pemesanan/pemesanan.php" class="nav-link">Pemesanan</a>
           </li>
         </ul>
 
 
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a href="../../pemesan/logout.php" class="btn btn-dark">Logout</a>
+                <a href="../../Login/logout.php" class="btn btn-dark">Logout</a>
 
             </li>
         </ul>

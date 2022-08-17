@@ -5,7 +5,7 @@ include 'config.php';
   
  session_start();
   
- if (isset($_SESSION['username'])) {
+ if (isset($_SESSION['id_admin'])) {
      header("Location: berhasil_login.php");
  }
   
@@ -17,7 +17,7 @@ include 'config.php';
      $result = mysqli_query($conn, $sql);
      if ($result->num_rows > 0) {
          $row = mysqli_fetch_assoc($result);
-         $_SESSION['username'] = $row['username'];
+         $_SESSION['id_admin'] = $row['username'];
          echo "<script>alert('username atau password Anda salah. Silahkan mikir!')</script>";
      } else {
          echo "<script>alert('username atau password Anda salah. Silahkan coba lagi!')</script>";
@@ -36,7 +36,7 @@ include 'config.php';
   
      <link rel="stylesheet" type="text/css" href="style.css">
   
-     <title>Niagahoster Tutorial</title>
+     <title>Pemesanan Undangan Pernikahan</title>
  </head>
  <body>
      <div class="alert alert-warning" role="alert">

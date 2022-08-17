@@ -6,7 +6,7 @@ error_reporting(0);
  
 session_start();
  
-if (isset($_SESSION['username'])) {
+if (isset($_SESSION['id_admin'])) {
     header("Location: ../dashboard.php");
 }
  
@@ -18,7 +18,7 @@ if (isset($_POST['submit'])) {
     $result = mysqli_query($conn, $sql);
     if ($result->num_rows > 0) {
         $row = mysqli_fetch_assoc($result);
-        $_SESSION['username'] = $row['username'];
+        $_SESSION['id_admin'] = $row['id_admin'];
         header("Location: ../dashboard.php");
     } else {
         echo "<script>alert('username atau password Anda salah. Silahkan coba lagi!')</script>";
@@ -37,7 +37,7 @@ if (isset($_POST['submit'])) {
  
     <link rel="stylesheet" type="text/css" href="style.css">
  
-    <title>Niagahoster Tutorial</title>
+    <title>Pemesanan Undangan Pernikahan</title>
 </head>
 <body>
     <div class="alert alert-warning" role="alert">
@@ -46,7 +46,7 @@ if (isset($_POST['submit'])) {
  
     <div class="container">
         <form action="" method="POST" class="login-email">
-            <p class="login-text" style="font-size: 2rem; font-weight: 800;">Login</p>
+            <p class="login-text" style="font-size: 2rem; font-weight: 800;">Login Admin</p>
             <div class="input-group">
                 <input type="username" placeholder="username" name="username" value="<?php echo $username; ?>" required>
             </div>
@@ -57,7 +57,7 @@ if (isset($_POST['submit'])) {
                 <button name="submit" class="btn">Login</button>
             </div>
         </form>
-        <a href="../../pemesan/index.php"  class="btn">Login sebagai pemesan</a>
+        <a href="pemesan.php"  class="btn">Masuk sebagai pemesan</a>
     </div>
 </body>
 </html>

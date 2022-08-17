@@ -1,3 +1,20 @@
+<?php 
+include '../config.php';
+session_start();
+
+
+if (isset($_SESSION['id_pemesan'])) {
+  $id = $_SESSION['id_pemesan'];
+  $query = "SELECT * FROM tb_pemesan where id_pemesan='$id'";
+  $login = mysqli_query($mysqli, $query);
+  foreach ($login as $data) {
+    $id =  $data['id_pemesan'];
+    $nama =  $data['nama'];
+    $no_hp = $data['no_hp'];
+  }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,16 +61,16 @@
         <div class="card">
           <div class="card-body">
 
-          <form action="" method="post">
+          <form action="pemesan_tambah_aksi" method="post">
             <h5 class="text-center" >Data Pemesan</h5>
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label >Nama</label>
-                <input type="Nama" class="form-control" placeholder="Nama" value="Nama">
+                <input type="text" class="form-control" value="<?= $nama ?>" disabled>
               </div>
               <div class="form-group col-md-6">
                 <label >No. HP</label>
-                <input type="No. HP" class="form-control" placeholder="No. HP" value="No. HP">
+                <input type="text" class="form-control" value="<?= $no_hp ?>" disabled>
               </div>
             </div>
             <hr>
@@ -62,32 +79,29 @@
               <div class="col">
                 <div class="form-group">
                   <label >Nama Pengantin Laki-laki</label>
-                  <input type="text" class="form-control" placeholder="1234 Main St">
+                  <input type="text" class="form-control" name="p_cowo">
                 </div>
                 <div class="form-group">
                   <label >Nama Orang tua Pengantin Laki-laki</label>
-                  <input type="text" class="form-control" placeholder="1234 Main St">
+                  <input type="text" class="form-control" name="ortu_cowo">
                 </div>
                 <div class="form-group">
                     <label >Tanggal</label><br>
-                    <input type="date" class="form-control" id="start" name="trip-start"
-                      value="2022-01-01"
-                      min="2022-01-01" max="2024-12-31">
+                    <input type="date" class="form-control" name="tgl_resep" >
                   </div>
               </div>
               <div class="col">
                 <div class="form-group">
                     <label >Nama Pengantin Perempuan</label>
-                    <input type="text" class="form-control" placeholder="1234 Main St">
+                    <input type="text" class="form-control" name="p_cewe">
                   </div>
                   <div class="form-group">
                     <label >Nama Orang tua Pengantin Perempuan</label>
-                    <input type="text" class="form-control" placeholder="1234 Main St">
+                    <input type="text" class="form-control" name="ortu_cewe">
                   </div>
                   <div class="form-group">
                     <label >Waktu</label><br>
-                    <input type="time" class="form-control" id="appt" name="appt"
-                    min="08:00" max="18:00" required>
+                    <input type="time" class="form-control" name="waktu_resep">
                   </div>
               </div>
             </div>
@@ -95,9 +109,10 @@
             
             <div class="form-group">
               <label >Alamat</label><br>
-              <textarea name="alamat" rows="3" cols="125"></textarea>
+              <textarea class="form-control" name="alamat_resep" rows="3"></textarea>
             </div>
 
+            <input type="hidden" name="id_pemesan" value="<?= $id ?>">
             <button type="submit" class="btn btn-primary">Tambah</button>
           </form>
                             

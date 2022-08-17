@@ -91,7 +91,6 @@ if (isset($_SESSION['id_admin'])) {
               }elseif (isset($_SESSION['id_pemesan'])) {
                 echo "
                 <a href='/pemesanan/pemesanan.php' class='btn btn-dark'>Data Pemesananku</a>
-                <a href='/pemesanan/pemesanan_tambah.php' class='btn btn-dark'>Tambah Pemesanan</a>
                 ";
               }
               ?>
@@ -99,6 +98,12 @@ if (isset($_SESSION['id_admin'])) {
 
             </div>
           </div>
+        <?php
+        if (isset($_SESSION['id_pemesan'])) {
+                echo "
+                <a href='/pemesanan/pemesanan_tambah.php' class='btn btn-dark btn-block'>Tambah Pemesanan</a>
+                ";
+              }?>
         </div>
         <!-- //////////////////////////////////////////////////// -->
       </div><!-- /.container-fluid -->

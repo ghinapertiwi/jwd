@@ -17,14 +17,21 @@ if (isset($_POST['submit'])) {
     $sql = "SELECT * FROM tb_pemesan WHERE no_hp='$no_hp' AND nama='$nama'";
     $result = mysqli_query($conn, $sql);
     if ($result->num_rows > 0) {
+        
         $row = mysqli_fetch_assoc($result);
         $_SESSION['id_pemesan'] = $row['id_pemesan'];
+
         header("Location: ../dashboard.php");
     } else {
         $result = mysqli_query($conn, "INSERT INTO `tb_pemesan`(`no_hp`, `nama`) VALUES ('$no_hp','$nama')");
-        $_SESSION['no_hp'] = $no_hp;
-        $_SESSION['nama'] = $nama;
-        header("Location: pemesan.php");
+        
+        $sql = "SELECT * FROM tb_pemesan WHERE no_hp='$no_hp' AND nama='$nama'";
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($result);
+        $_SESSION['id_pemesan'] = $row['id_pemesan'];
+
+        header("Location: ../dashboard.php");
+
     }
 }
  

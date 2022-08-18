@@ -12,48 +12,8 @@ if(isset($_POST['submit'])) {
 	$tanggal_resepsi = htmlspecialchars($_POST['tgl_resep']);
 	$waktu_resepsi = htmlspecialchars($_POST['waktu_resep']);
 	$alamat_resepsi = htmlspecialchars($_POST['alamat_resep']);
-	// var_dump($nama_pengantin_putra);
-	// die();
-		
-	// checking empty fields
-	if( empty($nama_pengantin_putra) || empty($nama_orangtua_pengantin_putra) || empty($tanggal_resepsi) || empty($nama_pengantin_putri) || empty($nama_orangtua_pengantin_putri) || empty($waktu_resepsi) || empty($alamat_resepsi)) 
-	{
-				
-		
-		if(empty($nama_pengantin_putra)) {
-			echo "<font color='red'>Nama pengantin putra field is empty.</font><br/>";
-		}
-
-		if(empty($nama_orangtua_pengantin_putra)) {
-			echo "<font color='red'>Nama orang tua pengantin putra field is empty.</font><br/>";
-		}
-
-		if(empty($tanggal_resepsi)) {
-			echo "<font color='red'>Tanggal resepsi field is empty.</font><br/>";
-		}
-
-		if(empty($nama_pengantin_putri)) {
-			echo "<font color='red'>Nama pengantin putri field is empty.</font><br/>";
-		}
-
-		if(empty($nama_orangtua_pengantin_putri)) {
-			echo "<font color='red'>Nama orang tua pengantin putri field is empty.</font><br/>";
-		}
-
-		if(empty($waktu_resepsi)) {
-			echo "<font color='red'>Waktu resepsi field is empty.</font><br/>";
-		}
-		if(empty($tanggal_resepsi)) {
-			echo "<font color='red'>Tanggal resepsi field is empty.</font><br/>";
-		}
-
-		if(empty($alamat_resepsi)) {
-			echo "<font color='red'>Alamat resepsi field is empty.</font><br/>";
-		}
-
-		//link to the previous page
-		echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
-	} else { 
+	
+		 
 		// var_dump("ngangong");
 		// die();
 		// if all the fields are filled (not empty) 
@@ -71,6 +31,5 @@ if(isset($_POST['submit'])) {
 		//tampilan
 		header("Location: pemesanan.php");
 
-	}
 }
 ?>

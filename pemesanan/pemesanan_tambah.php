@@ -79,29 +79,29 @@ if (isset($_SESSION['id_pemesan'])) {
               <div class="col">
                 <div class="form-group">
                   <label >Nama Pengantin Laki-laki</label>
-                  <input type="text" class="form-control" name="p_cowo">
+                  <input type="text" class="form-control" name="p_cowo" required>
                 </div>
                 <div class="form-group">
                   <label >Nama Orang tua Pengantin Laki-laki</label>
-                  <input type="text" class="form-control" name="ortu_cowo">
+                  <input type="text" class="form-control" name="ortu_cowo"required>
                 </div>
                 <div class="form-group">
                     <label >Tanggal</label><br>
-                    <input type="date" class="form-control" name="tgl_resep" >
+                    <input type="date" class="form-control" name="tgl_resep" required>
                   </div>
               </div>
               <div class="col">
                 <div class="form-group">
                     <label >Nama Pengantin Perempuan</label>
-                    <input type="text" class="form-control" name="p_cewe">
+                    <input type="text" class="form-control" name="p_cewe"required>
                   </div>
                   <div class="form-group">
                     <label >Nama Orang tua Pengantin Perempuan</label>
-                    <input type="text" class="form-control" name="ortu_cewe">
+                    <input type="text" class="form-control" name="ortu_cewe"required>
                   </div>
                   <div class="form-group">
                     <label >Waktu</label><br>
-                    <input type="time" class="form-control" name="waktu_resep">
+                    <input type="time" class="form-control" name="waktu_resep"required>
                   </div>
               </div>
             </div>
@@ -109,7 +109,7 @@ if (isset($_SESSION['id_pemesan'])) {
             
             <div class="form-group">
               <label >Alamat</label><br>
-              <textarea class="form-control" name="alamat_resep" rows="3"></textarea>
+              <textarea class="form-control" name="alamat_resep" rows="3"required></textarea>
             </div>
             
             <input type="hidden" name="id_pemesan" value="<?= $id ?>">

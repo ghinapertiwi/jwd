@@ -35,7 +35,6 @@ if (isset($_SESSION['id_admin'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Pemesanan Undangan Pernikahan</title>
 
-
   <?php include '../view/template/css.php';  ?>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.2.4/css/fixedHeader.bootstrap.min.css">
@@ -97,11 +96,11 @@ if (isset($_SESSION['id_admin'])) {
               </thead>
               <tbody>
                 <?php
-                if (isset($_SESSION['id_pemesan'])) {
+                if (isset($_SESSION['id_pemesan'])) {//jika login pemesan, panggil data nya pemesanan si pemesan saja
                 $query = "SELECT * FROM tb_pemesanan_undangan_pernikahan
                 join tb_pemesan on tb_pemesanan_undangan_pernikahan.id_pemesan = tb_pemesan.id_pemesan
                 where tb_pemesan.id_pemesan = '$id'";
-                }elseif (isset($_SESSION['id_admin'])) {
+                }elseif (isset($_SESSION['id_admin'])) {//jika login pemesan, panggil data nya pemesanan si pemesan saja
                 $query = "SELECT * FROM tb_pemesanan_undangan_pernikahan
                 join tb_pemesan on tb_pemesanan_undangan_pernikahan.id_pemesan = tb_pemesan.id_pemesan";
                 }
@@ -134,15 +133,15 @@ if (isset($_SESSION['id_admin'])) {
                         
                         <?php
                         if (isset($_SESSION['id_admin'])){
-                          if ($data['status'] == 'pemesanan') {
+                          if ($data['status'] == 'pemesanan') {//jika status pemesanan maka tampilkan tombol konfirmasi proses
                             ?>
                             <button name='proses' type='submit' class='btn btn-dark mx-1'><i class="fas fa-check"></i> Konfirmasi Proses</button>
                             <?php
-                          }elseif ($data['status'] == "proses") {
+                          }elseif ($data['status'] == "proses") {//jika status proses maka tampilkan tombol konfirmasi cetak
                             ?>
                             <button name='cetak' type='submit' class='btn btn-dark mx-1'><i class="fas fa-check"></i> Konfirmasi Cetak</button>
                             <?php
-                          }elseif ($data['status'] == 'cetak') {
+                          }elseif ($data['status'] == 'cetak') {//jika status cetak maka tampilkan tombol konfirmasi selesai
                             ?>
                             <button name='selesai' type='submit' class='btn btn-dark mx-1'><i class="fas fa-check"></i> Konfirmasi Selesai</button>
                             <?php
@@ -150,7 +149,7 @@ if (isset($_SESSION['id_admin'])) {
                         }
                         if (isset($_SESSION['id_pemesan'])) 
                         {
-                          if ($data['status'] == 'pemesanan') {
+                          if ($data['status'] == 'pemesanan') {//jika status pemesanan maka bisa melakukan edit
                           ?>
                           <button name='edit' formaction="pemesanan_edit.php" type='submit' class='btn btn-dark'><i class="fas fa-edit"></i> Edit</button>
                           <?php

@@ -3,8 +3,9 @@ include 'config.php';
 session_start();
 
 
-if (isset($_SESSION['id_pemesan'])) {
+if (isset($_SESSION['id_pemesan'])) {//jika login sebagai admin
   $id = $_SESSION['id_pemesan'];
+  //ambil data admin
   $query = "SELECT * FROM tb_pemesan where id_pemesan='$id'";
   $login = mysqli_query($mysqli, $query);
   foreach ($login as $data) {
@@ -14,8 +15,9 @@ if (isset($_SESSION['id_pemesan'])) {
   }
 }
 
-if (isset($_SESSION['id_admin'])) {
+if (isset($_SESSION['id_admin'])) {//jika login sebagai admin
   $id = $_SESSION['id_admin'];
+  //ambil data admin
   $query = "SELECT * FROM tb_admin where id_admin='$id'";
   $login = mysqli_query($mysqli, $query);
   foreach ($login as $data) {
@@ -76,22 +78,21 @@ if (isset($_SESSION['id_admin'])) {
               <h2>Selamat Datang, <b><?= $nama; ?></b></h2>
               <br>
               <?php
-              if (isset($_SESSION['id_admin'])) {
-                echo $username;
+              if (isset($_SESSION['id_admin'])) {//jika login sebagai admin
+                echo $username;//tampilkan username admin
               }
               ?>
               <p>No. HP = <?= $no_hp; ?></p>
             </div>
             <div class="ml-auto">
               <?php
-              if (isset($_SESSION['id_admin'])){
+              if (isset($_SESSION['id_admin'])){//jika login sebagai admin, tampilkan tombol data pemesanan
                 echo "
                 <a href='/pemesanan/pemesanan.php' class='btn btn-dark'>Data Pemesanan</a>
                 ";
-              }elseif (isset($_SESSION['id_pemesan'])) {
+              }elseif (isset($_SESSION['id_pemesan'])) {//jika login sebagai admin, 
                 ?>
-                <a href='/pemesanan/pemesanan.php' class='btn btn-dark'>Data Pemesananku</a>
-                
+                <a href='/pemesanan/pemesanan.php' class='btn btn-dark'>Data Pemesananku</a><!-- maka tampilkan tombol data pemesananku -->
                 
                       <a class="btn btn-success dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-phone-alt"></i> WhatsApp Admin
@@ -99,6 +100,7 @@ if (isset($_SESSION['id_admin'])) {
                       
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" >
                       <?php
+                          // mengambil data untuk mengecek nomor hp admin
                           $query = "SELECT * FROM tb_admin";
                           $anu = mysqli_query($mysqli, $query);
                           foreach ($anu as $data) {
@@ -114,7 +116,7 @@ if (isset($_SESSION['id_admin'])) {
                               }
                               
                               ?>
-                          <a class="dropdown-item" href="https://wa.me/<?=$hp?>"><?= $data['nama']?></a>
+                          <a class="dropdown-item" href="https://wa.me/<?=$hp?>"><?= $data['nama']?></a><!-- memasukkan nomor gateway wa di dalam tombol -->
                           <?php
                           }
                           ?>

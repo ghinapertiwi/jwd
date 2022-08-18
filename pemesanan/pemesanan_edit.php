@@ -86,29 +86,29 @@ foreach ($result as $data) {
               <div class="col">
                 <div class="form-group">
                   <label >Nama Pengantin Laki-laki</label>
-                  <input type="text" class="form-control" value="<?= $p_cowo ?>" name="p_cowo">
+                  <input type="text" class="form-control" value="<?= $p_cowo ?>" name="p_cowo"required>
                 </div>
                 <div class="form-group">
                   <label >Nama Orang tua Pengantin Laki-laki</label>
-                  <input type="text" class="form-control" value="<?= $ortu_cowo ?>" name="ortu_cowo">
+                  <input type="text" class="form-control" value="<?= $ortu_cowo ?>" name="ortu_cowo"required>
                 </div>
                 <div class="form-group">
                     <label >Tanggal</label><br>
-                    <input type="date" class="form-control" id="start" name="tgl_resep" value="<?= $tgl ?>" >
+                    <input type="date" class="form-control" id="start" name="tgl_resep" value="<?= $tgl ?>" required>
                   </div>
               </div>
               <div class="col">
                 <div class="form-group">
                     <label >Nama Pengantin Perempuan</label>
-                    <input type="text" class="form-control" value="<?= $p_cewe ?>" name="p_cewe">
+                    <input type="text" class="form-control" value="<?= $p_cewe ?>" name="p_cewe"required>
                   </div>
                   <div class="form-group">
                     <label >Nama Orang tua Pengantin Perempuan</label>
-                    <input type="text" class="form-control" value="<?= $ortu_cewe ?>" name="ortu_cewe">
+                    <input type="text" class="form-control" value="<?= $ortu_cewe ?>" name="ortu_cewe"required>
                   </div>
                   <div class="form-group">
                     <label >Waktu</label><br>
-                    <input type="time" class="form-control" value="<?= $jam ?>" name="waktu_resep">
+                    <input type="time" class="form-control" value="<?= $jam ?>" name="waktu_resep"required>
                     
                   </div>
               </div>
@@ -117,7 +117,7 @@ foreach ($result as $data) {
             
             <div class="form-group">
               <label >Alamat</label><br>
-              <textarea class="form-control" name="alamat_resep" rows="3" ><?= $alamat ?></textarea>
+              <textarea class="form-control" name="alamat_resep" rows="3" required><?= $alamat ?></textarea>
             </div>
             <div class="nav">
             <input type="hidden" name="id_pemesan" value="<?= $id ?>">

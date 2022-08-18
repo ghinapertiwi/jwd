@@ -23,11 +23,13 @@ if (isset($_POST['selesai'])) {
 }
 
 if (isset($_POST['hapus'])) {
-    $id = $_POST['id'];
-    $query = "DELETE FROM `tb_pemesanan_undangan_pernikahan` WHERE `id_pemesanan` = $id";
-    $result = mysqli_query($mysqli, $query);
-    // var_dump($query);
-    // die();
-  header("location:pemesanan.php");
+  $id = $_POST['id'];
+  $query = "DELETE FROM `tb_pemesanan_undangan_pernikahan` WHERE `id_pemesanan` = $id";
+  $result = mysqli_query($mysqli, $query);
+  // var_dump($query);
+  // die();
+header("location:pemesanan.php");
 }
+
+
 ?>

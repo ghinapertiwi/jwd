@@ -35,8 +35,6 @@ if (isset($_POST['submit'])) {
 
     }
 }
-$query = "SELECT * FROM tb_admin";
-$anu = mysqli_query($conn, $query);
 
 ?>
 <!DOCTYPE html>
@@ -77,12 +75,13 @@ $anu = mysqli_query($conn, $query);
             <a href="admin.php"  class="btn btn-light mr-auto">Login sebagai admin</a>
             <div class="dropdown show ml-auto">
                 <a class="btn btn-success dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Kontak
+                <i class="fas fa-phone-alt"></i> Kontak
                 </a>
                 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" >
                 <?php
-                    
+                    $query = "SELECT * FROM tb_admin";
+                    $anu = mysqli_query($conn, $query);
                     foreach ($anu as $data) {
                         if(!preg_match('/[^+0-9]/',trim($data['no_hp']))){
                             // cek apakah no hp karakter 1-3 adalah +62

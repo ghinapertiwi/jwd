@@ -89,9 +89,37 @@ if (isset($_SESSION['id_admin'])) {
                 <a href='/pemesanan/pemesanan.php' class='btn btn-dark'>Data Pemesanan</a>
                 ";
               }elseif (isset($_SESSION['id_pemesan'])) {
-                echo "
+                ?>
                 <a href='/pemesanan/pemesanan.php' class='btn btn-dark'>Data Pemesananku</a>
-                ";
+                
+                
+                      <a class="btn btn-success dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-phone-alt"></i> WhatsApp Admin
+                      </a>
+                      
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" >
+                      <?php
+                          $query = "SELECT * FROM tb_admin";
+                          $anu = mysqli_query($mysqli, $query);
+                          foreach ($anu as $data) {
+                              if(!preg_match('/[^+0-9]/',trim($data['no_hp']))){
+                                  // cek apakah no hp karakter 1-3 adalah +62
+                                  if(substr(trim($data['no_hp']), 0, 3)=='62'){
+                                      $hp = trim($data['no_hp']);
+                                  }
+                                  // cek apakah no hp karakter 1 adalah 0
+                                  elseif(substr(trim($data['no_hp']), 0, 1)=='0'){
+                                      $hp = '62'.substr(trim($data['no_hp']), 1);
+                                  }
+                              }
+                              
+                              ?>
+                          <a class="dropdown-item" href="https://wa.me/<?=$hp?>"><?= $data['nama']?></a>
+                          <?php
+                          }
+                          ?>
+                      </div>
+                <?php
               }
               ?>
             </div>

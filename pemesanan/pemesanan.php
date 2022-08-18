@@ -57,7 +57,7 @@ if (isset($_SESSION['id_admin'])) {
             <h1 class="m-0">Pemesanan
               <?php
               if (isset($_SESSION['id_pemesan'])) {
-                ?><a href='pemesanan_tambah.php' class='btn btn-dark'><i class="fas fa-plus"></i> Tambah Pemesanan</a><?php
+                ?><a href='pemesanan_tambah.php' class='btn btn-sm btn-dark'><i class="fas fa-plus"></i> Tambah Pemesanan</a><?php
               }
               ?>
 
@@ -87,8 +87,8 @@ if (isset($_SESSION['id_admin'])) {
               <thead>
                   <tr>
                       <th>Nama Pemesan</th>
-                      <th>No HP Pemesan</th>
-                      <th>Tanggal Pemesanan</th>
+                      <th width="3px">No HP Pemesan</th>
+                      <th width="3px">Tanggal Pemesanan</th>
                       <th>Nama Pengantin</th>
                       <th>Status</th>
                       <th>Aksi</th>
@@ -121,12 +121,12 @@ if (isset($_SESSION['id_admin'])) {
                   ?>
                   <tr>
                       <td><?= $data['nama'];?></td>
-                      <td><a href="https://wa.me/<?=$hp?>" class="btn  btn-success"><i class="fas fa-phone-alt"></i> <?= $hp;?></a></td>
+                      <td><a href="https://wa.me/<?=$hp?>" class="badge  bg-success"><i class="fas fa-phone-alt"></i> <?= $hp;?></a></td>
                       <td><?= $data['tgl_pemesanan'];?></td>
                       <td><?= $data['nama_pengantin_putra'];?> & <?= $data['nama_pengantin_putri'];?> </td>
                       <td><b><?= strtoupper($data['status']);?></b></td>
                       <td class="d-flex ">
-                        <a href='/pemesanan/pemesanan_detail.php?id=<?= $data['id_pemesanan'];?>' class='btn btn-dark mx-1'><i class="fas fa-file-alt"></i> Detail</a>
+                        <a href='/pemesanan/pemesanan_detail.php?id=<?= $data['id_pemesanan'];?>' class='btn btn-sm btn-dark m-1'><i class="fas fa-file-alt"></i> Detail</a>
 
                         <form action="proses.php" method='post'>
                         <input type='hidden' name='id' value='<?= $data['id_pemesanan']?>'>
@@ -135,15 +135,15 @@ if (isset($_SESSION['id_admin'])) {
                         if (isset($_SESSION['id_admin'])){
                           if ($data['status'] == 'pemesanan') {//jika status pemesanan maka tampilkan tombol konfirmasi proses
                             ?>
-                            <button name='proses' type='submit' class='btn btn-dark mx-1'><i class="fas fa-check"></i> Konfirmasi Proses</button>
+                            <button name='proses' type='submit' class='btn btn-sm btn-dark m-1'><i class="fas fa-check"></i> Konfirmasi Proses</button>
                             <?php
                           }elseif ($data['status'] == "proses") {//jika status proses maka tampilkan tombol konfirmasi cetak
                             ?>
-                            <button name='cetak' type='submit' class='btn btn-dark mx-1'><i class="fas fa-check"></i> Konfirmasi Cetak</button>
+                            <button name='cetak' type='submit' class='btn btn-sm btn-dark m-1'><i class="fas fa-check"></i> Konfirmasi Cetak</button>
                             <?php
                           }elseif ($data['status'] == 'cetak') {//jika status cetak maka tampilkan tombol konfirmasi selesai
                             ?>
-                            <button name='selesai' type='submit' class='btn btn-dark mx-1'><i class="fas fa-check"></i> Konfirmasi Selesai</button>
+                            <button name='selesai' type='submit' class='btn btn-sm btn-dark m-1'><i class="fas fa-check"></i> Konfirmasi Selesai</button>
                             <?php
                           }
                         }
@@ -151,11 +151,11 @@ if (isset($_SESSION['id_admin'])) {
                         {
                           if ($data['status'] == 'pemesanan') {//jika status pemesanan maka bisa melakukan edit
                           ?>
-                          <button name='edit' formaction="pemesanan_edit.php" type='submit' class='btn btn-dark'><i class="fas fa-edit"></i> Edit</button>
+                          <button name='edit' formaction="pemesanan_edit.php" type='submit' class='btn btn-sm btn-dark m-1'><i class="fas fa-edit"></i> Edit</button>
                           <?php
                           }
                           ?>
-                          <button name='hapus' type='submit' class='btn btn-danger' onclick="return confirm('Apakah anda yakin ingin menghapus ini ?')"><i class="fas fa-trash"></i> Hapus</button>
+                          <button name='hapus' type='submit' class='btn btn-sm btn-danger' onclick="return confirm('Apakah anda yakin ingin menghapus ini ?')"><i class="fas fa-trash"></i> Hapus</button>
                           <?php
                         }
                         ?>

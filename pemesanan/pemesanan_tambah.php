@@ -20,7 +20,7 @@ if (isset($_SESSION['id_pemesan'])) {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Top Navigation</title>
+  <title>Pemesanan Undangan Pernikahan</title>
 
 
   <?php include '../view/template/css.php';  ?>
@@ -61,7 +61,7 @@ if (isset($_SESSION['id_pemesan'])) {
         <div class="card">
           <div class="card-body">
 
-          <form action="pemesan_tambah_aksi" method="post">
+          <form action="pemesanan_tambah_aksi.php" method="post">
             <h5 class="text-center" >Data Pemesan</h5>
             <div class="form-row">
               <div class="form-group col-md-6">
@@ -111,9 +111,12 @@ if (isset($_SESSION['id_pemesan'])) {
               <label >Alamat</label><br>
               <textarea class="form-control" name="alamat_resep" rows="3"></textarea>
             </div>
-
+            
             <input type="hidden" name="id_pemesan" value="<?= $id ?>">
-            <button type="submit" class="btn btn-primary">Tambah</button>
+            <div class="nav">
+              <a href="pemesanan.php" class="btn btn-dark mr-auto">Kembali</a>
+              <button type="submit" name="submit" class="btn btn-primary ml-auto">Tambah</button>
+            </div>
           </form>
                             
 

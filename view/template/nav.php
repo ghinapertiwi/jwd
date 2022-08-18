@@ -27,8 +27,18 @@
 
 
         <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+              <?php
+              if (isset($_SESSION['id_admin'])) {
+                echo"<label class='btn '>Admin</label>";
+              }
+              if (isset($_SESSION['id_pemesan'])) {
+                echo"<label class='btn '>Pemesan</label>";
+              }
+              ?>
+        </li>
             <li class="nav-item">
-                <a href="../../Login/logout.php" class="btn btn-dark">Logout</a>
+                <a href="../../Login/logout.php" onclick="return confirm('Apakah anda yakin ingin Logout ?')" class="btn btn-dark">Logout</a>
 
             </li>
         </ul>

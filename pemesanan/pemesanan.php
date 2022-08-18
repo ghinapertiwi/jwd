@@ -24,6 +24,8 @@ if (isset($_SESSION['id_admin'])) {
     $no_hp = $data['no_hp'];
   }
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -36,6 +38,8 @@ if (isset($_SESSION['id_admin'])) {
 
   <?php include '../view/template/css.php';  ?>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.2.4/css/fixedHeader.bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap.min.css">
 
 </head>
 <body class="hold-transition layout-top-nav">
@@ -87,6 +91,7 @@ if (isset($_SESSION['id_admin'])) {
                       <th>No HP Pemesan</th>
                       <th>Tanggal Pemesanan</th>
                       <th>Nama Pengantin</th>
+                      <th>Status</th>
                       <th>Aksi</th>
                   </tr>
               </thead>
@@ -103,25 +108,59 @@ if (isset($_SESSION['id_admin'])) {
 
                 $result = mysqli_query($mysqli, $query);
                 foreach ($result as $data) {
+                  
+                  if(!preg_match('/[^+0-9]/',trim($data['no_hp']))){
+                    // cek apakah no hp karakter 1-3 adalah +62
+                    if(substr(trim($data['no_hp']), 0, 3)=='62'){
+                        $hp = trim($data['no_hp']);
+                    }
+                    // cek apakah no hp karakter 1 adalah 0
+                    elseif(substr(trim($data['no_hp']), 0, 1)=='0'){
+                        $hp = '62'.substr(trim($data['no_hp']), 1);
+                    }
+                }
                   ?>
                   <tr>
                       <td><?= $data['nama'];?></td>
-                      <td><?= $data['no_hp'];?></td>
+                      <td><a href="https://wa.me/<?=$hp?>" class="badge  bg-success"><?= $hp;?></a></td>
                       <td><?= $data['tgl_pemesanan'];?></td>
-                      <td><?= $data['nama_pengantin_putra'];?></td>
-                      <td>
-                        <a href='/pemesanan/pemesanan_detail.php?id=<?= $data['id_pemesanan'];?>' class='btn btn-dark'>Detail</a>
+                      <td><?= $data['nama_pengantin_putra'];?> & <?= $data['nama_pengantin_putri'];?> </td>
+                      <td><b><?= strtoupper($data['status']);?></b></td>
+                      <td class="d-flex ">
+                        <a href='/pemesanan/pemesanan_detail.php?id=<?= $data['id_pemesanan'];?>' class='btn btn-dark mx-1'>Detail</a>
+
+                        <form action="proses.php" method='post'>
+                        <input type='hidden' name='id' value='<?= $data['id_pemesanan']?>'>
+                        
                         <?php
                         if (isset($_SESSION['id_admin'])){
-                          echo "
-                          <a href='/pemesanan/pemesanan.php' class='btn btn-dark'>Konfirmasi Proses</a>
-                          ";
+                          if ($data['status'] == 'pemesanan') {
+                            ?>
+                            <button name='proses' type='submit' class='btn btn-dark mx-1'>Konfirmasi Proses</button>
+                            <?php
+                          }elseif ($data['status'] == "proses") {
+                            ?>
+                            <button name='cetak' type='submit' class='btn btn-dark mx-1'>Konfirmasi Cetak</button>
+                            <?php
+                          }elseif ($data['status'] == 'cetak') {
+                            ?>
+                            <button name='selesai' type='submit' class='btn btn-dark mx-1'>Konfirmasi Selesai</button>
+                            <?php
+                          }
+                        }
+                        if (isset($_SESSION['id_pemesan'])) 
+                        {
+                          if ($data['status'] == 'pemesanan') {
+                          ?>
+                          <button name='edit' formaction="pemesanan_edit.php" type='submit' class='btn btn-dark'>Edit</button>
+                          <?php
+                          }
+                          ?>
+                          <button name='hapus' type='submit' class='btn btn-danger' onclick="return confirm('Apakah anda yakin ingin menghapus ini ?')">Hapus</button>
+                          <?php
                         }
                         ?>
-                        <!-- <a href='pemesanan_detail.php' class='btn btn-dark'>Detail</a> -->
-                        <!-- <a href='#' class='btn btn-dark'>Konfirmasi Proses</a> -->
-                        <!-- <a href='#' class='btn btn-dark'>Cetak</a>
-                        <a href='#' class='btn btn-dark'>Selesai</a> -->
+                        </form>
                       </td>
                   </tr>
                   <?php }; ?>
@@ -153,9 +192,15 @@ if (isset($_SESSION['id_admin'])) {
 <?php include '../view/template/js.php'; ?>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/fixedheader/3.2.4/js/dataTables.fixedHeader.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.3.0/js/responsive.bootstrap.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#example').DataTable();
+            $('#example').DataTable({
+              responsive: true
+            });
+            
         });
     </script>
 </body>

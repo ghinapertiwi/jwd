@@ -1,4 +1,5 @@
 <?php 
+ include '../view/template/css.php';
  
 include 'config.php';
  
@@ -40,7 +41,7 @@ if (isset($_POST['submit'])) {
     <title>Pemesanan Undangan Pernikahan</title>
 </head>
 <body>
-    <div class="alert alert-warning" role="alert">
+    <div class="alert alert" role="alert">
         <?php echo $_SESSION['error']?>
     </div>
  
@@ -57,7 +58,7 @@ if (isset($_POST['submit'])) {
                 <button name="submit" class="btn">Login</button>
             </div>
         </form>
-        <a href="pemesan.php"  class="btn">Masuk sebagai pemesan</a>
+        <a href="pemesan.php"  class="btn btn-light">Masuk sebagai pemesan</a>
     </div>
 </body>
 </html>

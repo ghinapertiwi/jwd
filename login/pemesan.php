@@ -1,5 +1,6 @@
+
 <?php 
- 
+ include '../view/template/css.php';
 include 'config.php';
  
 error_reporting(0);
@@ -34,7 +35,9 @@ if (isset($_POST['submit'])) {
 
     }
 }
- 
+$query = "SELECT * FROM tb_admin";
+$anu = mysqli_query($conn, $query);
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -49,13 +52,17 @@ if (isset($_POST['submit'])) {
     <title>Pemesanan Undangan Pernikahan</title>
 </head>
 <body>
-    <div class="alert alert-warning" role="alert">
+    <div class="alert" role="alert">
         <?php echo $_SESSION['error']?>
     </div>
  
     <div class="container">
         <form action="" method="POST" class="login-email">
             <p class="login-text" style="font-size: 2rem; font-weight: 800;">Pemesan</p>
+            <center>
+                <p>Selamat Datang di Website Pemesanan Undangan Pernikahan, Silahkan masukkan data diri untuk melanjutkan</p>
+            </center>
+            <br>
             <div class="input-group">
                 <input type="no_hp" placeholder="No HP" name="no_hp" value="<?php echo $no_hp; ?>" required>
             </div>
@@ -63,11 +70,44 @@ if (isset($_POST['submit'])) {
                 <input type="nama" placeholder="Nama" name="nama" value="<?php echo $_POST['nama']; ?>" required>
             </div>
             <div class="input-group">
-                <button name="submit" class="btn">Memesan</button>
+                <button name="submit" class="btn">Lanjut Memesan</button>
             </div>
         </form>
-        <a href="admin.php"  class="btn">Login sebagai admin</a>
+        <div class="nav">
+            <a href="admin.php"  class="btn btn-light mr-auto">Login sebagai admin</a>
+            <div class="dropdown show ml-auto">
+                <a class="btn btn-success dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Kontak
+                </a>
+                
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" >
+                <?php
+                    
+                    foreach ($anu as $data) {
+                        if(!preg_match('/[^+0-9]/',trim($data['no_hp']))){
+                            // cek apakah no hp karakter 1-3 adalah +62
+                            if(substr(trim($data['no_hp']), 0, 3)=='62'){
+                                $hp = trim($data['no_hp']);
+                            }
+                            // cek apakah no hp karakter 1 adalah 0
+                            elseif(substr(trim($data['no_hp']), 0, 1)=='0'){
+                                $hp = '62'.substr(trim($data['no_hp']), 1);
+                            }
+                        }
+                        
+                        ?>
+                    <a class="dropdown-item" href="https://wa.me/<?=$hp?>"><?= $data['nama']?></a>
+                    <?php
+                    }
+                    ?>
+                <!-- </div> -->
+            </div>
+            
+        </div>
         
     </div>
+    <?php
+    include '../view/template/js.php';
+    ?>
 </body>
 </html>

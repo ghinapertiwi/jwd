@@ -12,6 +12,8 @@ if(isset($_POST['submit'])) {
 	$tanggal_resepsi = htmlspecialchars($_POST['tgl_resep']);
 	$waktu_resepsi = htmlspecialchars($_POST['waktu_resep']);
 	$alamat_resepsi = htmlspecialchars($_POST['alamat_resep']);
+	// var_dump($nama_pengantin_putra);
+	// die();
 		
 	// checking empty fields
 	if( empty($nama_pengantin_putra) || empty($nama_orangtua_pengantin_putra) || empty($tanggal_resepsi) || empty($nama_pengantin_putri) || empty($nama_orangtua_pengantin_putri) || empty($waktu_resepsi) || empty($alamat_resepsi)) 
@@ -48,16 +50,23 @@ if(isset($_POST['submit'])) {
 		if(empty($alamat_resepsi)) {
 			echo "<font color='red'>Alamat resepsi field is empty.</font><br/>";
 		}
-		
+
 		//link to the previous page
 		echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
-		var_dump("ngangong");
 	} else { 
+		// var_dump("ngangong");
+		// die();
 		// if all the fields are filled (not empty) 
 		//insert data to database	
-		$result = mysqli_query($mysqli, "INSERT INTO `tb_pemesanan_undangan_pernikahan`
-		(`id_pemesan`, `tgl_pemesanan`, `nama_pengantin_putra`, `nama_orangtua_pengantin_putra`, `nama_pengantin_putri`, `nama_orangtua_pengantin_putri`, `alamat_resepsi`, `waktu_resepsi`, `tanggal_resepsi`) VALUES 
-		('$id',now(),'$nama_pengantin_putra','$nama_orangtua_pengantin_putra','$nama_pengantin_putri','$nama_orangtua_pengantin_putri','$alamat_resepsi','$waktu_resepsi','$tanggal_resepsi')");
+		$result = mysqli_query($mysqli, "UPDATE `tb_pemesanan_undangan_pernikahan` SET 
+		`nama_pengantin_putra`='$nama_pengantin_putra',
+		`nama_orangtua_pengantin_putra`='$nama_orangtua_pengantin_putra',
+		`nama_pengantin_putri`='$nama_pengantin_putri',
+		`nama_orangtua_pengantin_putri`='$nama_orangtua_pengantin_putri',
+		`alamat_resepsi`='$alamat_resepsi',
+		`waktu_resepsi`='$waktu_resepsi',
+		`tanggal_resepsi`='$tanggal_resepsi'
+		WHERE `id_pemesanan`='$id'");
 		
 		//tampilan
 		header("Location: pemesanan.php");

@@ -3,10 +3,20 @@ include '../config.php';
 session_start();
 
 $id=$_GET['id'];
-$query = "SELECT * FROM tb_pemesan where id_pemesan='$id'";
+$query = "SELECT * FROM tb_pemesanan_undangan_pernikahan
+join tb_pemesan on tb_pemesanan_undangan_pernikahan.id_pemesan = tb_pemesan.id_pemesan
+where tb_pemesanan_undangan_pernikahan.id_pemesanan = '$id'";
 $result = mysqli_query($mysqli, $query);
 foreach ($result as $data) {
-  
+  $nama = $data['nama'];
+  $no_hp = $data['no_hp'];
+  $p_cowo = $data['nama_pengantin_putra'];
+  $ortu_cowo = $data['nama_orangtua_pengantin_putra'];
+  $p_cewe = $data['nama_pengantin_putri'];
+  $ortu_cewe = $data['nama_orangtua_pengantin_putri'];
+  $alamat = $data['alamat_resepsi'];
+  $jam = $data['waktu_resepsi'];
+  $tgl = $data['tanggal_resepsi'];
 }
 
 ?>
@@ -16,7 +26,7 @@ foreach ($result as $data) {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Top Navigation</title>
+  <title>Pemesanan Undangan Pernikahan</title>
 
 
   <?php include '../view/template/css.php';  ?>
@@ -36,7 +46,7 @@ foreach ($result as $data) {
       <div class="container">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Pemesanan</h1>
+            <h1 class="m-0">Detail Data Pemesanan</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -62,11 +72,11 @@ foreach ($result as $data) {
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label >Name</label>
-                <input type="Name" class="form-control" placeholder="Name" value="Name">
+                <input type="Name" class="form-control" placeholder="Name" value="<?= $nama ?>" disabled>
               </div>
               <div class="form-group col-md-6">
                 <label >No. HP</label>
-                <input type="No. HP" class="form-control" placeholder="No. HP" value="No. HP">
+                <input type="No. HP" class="form-control" placeholder="No. HP" value="<?= $no_hp ?>" disabled>
               </div>
             </div>
             <hr>
@@ -75,32 +85,31 @@ foreach ($result as $data) {
               <div class="col">
                 <div class="form-group">
                   <label >Nama Pengantin Laki-laki</label>
-                  <input type="text" class="form-control" placeholder="1234 Main St">
+                  <input type="text" class="form-control" value="<?= $p_cowo ?>" disabled>
                 </div>
                 <div class="form-group">
                   <label >Nama Orang tua Pengantin Laki-laki</label>
-                  <input type="text" class="form-control" placeholder="1234 Main St">
+                  <input type="text" class="form-control" value="<?= $ortu_cowo ?>" disabled>
                 </div>
                 <div class="form-group">
                     <label >Tanggal</label><br>
                     <input type="date" class="form-control" id="start" name="trip-start"
-                      value="2022-01-01"
-                      min="2022-01-01" max="2024-12-31">
+                      value="<?= $tgl ?>" disabled>
                   </div>
               </div>
               <div class="col">
                 <div class="form-group">
                     <label >Nama Pengantin Perempuan</label>
-                    <input type="text" class="form-control" placeholder="1234 Main St">
+                    <input type="text" class="form-control" value="<?= $p_cewe ?>" disabled>
                   </div>
                   <div class="form-group">
                     <label >Nama Orang tua Pengantin Perempuan</label>
-                    <input type="text" class="form-control" placeholder="1234 Main St">
+                    <input type="text" class="form-control" value="<?= $ortu_cewe ?>" disabled>
                   </div>
                   <div class="form-group">
                     <label >Waktu</label><br>
-                    <input type="time" class="form-control" id="appt" name="appt"
-                    min="08:00" max="18:00" required>
+                    <input type="time" class="form-control" value="<?= $jam ?>" disabled>
+                    
                   </div>
               </div>
             </div>
@@ -108,10 +117,11 @@ foreach ($result as $data) {
             
             <div class="form-group">
               <label >Alamat</label><br>
-              <textarea class="form-control" name="alamat" rows="3"></textarea>
+              <textarea class="form-control" name="alamat" rows="3" disabled><?= $alamat ?></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Edit</button>
           </form>
+          <a href="pemesanan.php" class="btn btn-dark">Kembali</a>
+          <!-- <button type="submit" class="btn btn-primary">Edit</button> -->
                             
 
             </div>

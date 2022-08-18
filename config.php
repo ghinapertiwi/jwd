@@ -1,7 +1,7 @@
 <?php
  
 $databaseHost = 'localhost';
-$databaseName = 'percetakan';
+$databaseName = 'db_percetakan';
 $databaseUsername = 'root';
 $databasePassword = '';
  

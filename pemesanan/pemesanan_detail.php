@@ -2,7 +2,7 @@
 include '../config.php';
 session_start();
 
-$id=$_GET['id'];
+$id=$_GET['id']; //mengambil data dari tombol yang ada dipemesanan
 $query = "SELECT * FROM tb_pemesanan_undangan_pernikahan
 join tb_pemesan on tb_pemesanan_undangan_pernikahan.id_pemesan = tb_pemesan.id_pemesan
 where tb_pemesanan_undangan_pernikahan.id_pemesanan = '$id'";

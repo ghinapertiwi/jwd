@@ -100,13 +100,13 @@ if (isset($_SESSION['id_admin'])) {
                 $query = "SELECT * FROM tb_pemesanan_undangan_pernikahan
                 join tb_pemesan on tb_pemesanan_undangan_pernikahan.id_pemesan = tb_pemesan.id_pemesan
                 where tb_pemesan.id_pemesan = '$id'";
-                }elseif (isset($_SESSION['id_admin'])) {//jika login pemesan, panggil data nya pemesanan si pemesan saja
+                }elseif (isset($_SESSION['id_admin'])) {//jika login admin, panggil semua data
                 $query = "SELECT * FROM tb_pemesanan_undangan_pernikahan
                 join tb_pemesan on tb_pemesanan_undangan_pernikahan.id_pemesan = tb_pemesan.id_pemesan";
                 }
 
                 $result = mysqli_query($mysqli, $query);
-                foreach ($result as $data) {
+                foreach ($result as $data) { // foreach fungsi untuk melakukan perulangan
                   
                   if(!preg_match('/[^+0-9]/',trim($data['no_hp']))){
                     // cek apakah no hp karakter 1-3 adalah +62

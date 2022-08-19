@@ -7,7 +7,7 @@ error_reporting(0);
  
 session_start();
  
-if (isset($_SESSION['id_pemesan'])) {
+if (isset($_SESSION['id_pemesan'])) { 
     header("Location: ../dashboard.php");
 }
  

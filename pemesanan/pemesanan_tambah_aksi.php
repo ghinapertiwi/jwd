@@ -20,7 +20,9 @@ if(isset($_POST['submit'])) {
 		$result = mysqli_query($mysqli, "INSERT INTO `tb_pemesanan_undangan_pernikahan`
 		(`id_pemesan`, `tgl_pemesanan`, `nama_pengantin_putra`, `nama_orangtua_pengantin_putra`, `nama_pengantin_putri`, `nama_orangtua_pengantin_putri`, `alamat_resepsi`, `waktu_resepsi`, `tanggal_resepsi`) VALUES 
 		('$id',now(),'$nama_pengantin_putra','$nama_orangtua_pengantin_putra','$nama_pengantin_putri','$nama_orangtua_pengantin_putri','$alamat_resepsi','$waktu_resepsi','$tanggal_resepsi')");
-		
+		?>
+			<script>alert("data berhasil ditambah");</script>
+		<?php
 		//tampilan
 		header("Location: pemesanan.php");
 

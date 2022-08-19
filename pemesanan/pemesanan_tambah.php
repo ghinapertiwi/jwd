@@ -3,10 +3,10 @@ include '../config.php';
 session_start();
 
 
-if (isset($_SESSION['id_pemesan'])) {
+if (isset($_SESSION['id_pemesan'])) { //memastikan login sebagai pemesan
   $id = $_SESSION['id_pemesan'];
   $query = "SELECT * FROM tb_pemesan where id_pemesan='$id'";
-  $login = mysqli_query($mysqli, $query);
+  $login = mysqli_query($mysqli, $query); //fungsi untuk melakukan eksekusi query
   foreach ($login as $data) {
     $id =  $data['id_pemesan'];
     $nama =  $data['nama'];

@@ -4,7 +4,7 @@
 include "../config.php";
 // var_dump($_POST);
 if(isset($_POST['submit'])) {	
-	$id = $_POST['id_pemesan'];
+	$id = $_POST['id_pemesan']; //
 	$nama_pengantin_putra = htmlspecialchars($_POST['p_cowo']);
 	$nama_orangtua_pengantin_putra = htmlspecialchars($_POST['ortu_cowo']);
 	$nama_pengantin_putri = htmlspecialchars($_POST['p_cewe']);

@@ -2,7 +2,7 @@
 include '../config.php';
 session_start();
 
-$id = $_POST['id'];
+$id = $_POST['id']; //diambil dari 132
 
 $query = "SELECT * FROM tb_pemesanan_undangan_pernikahan
 join tb_pemesan on tb_pemesanan_undangan_pernikahan.id_pemesan = tb_pemesan.id_pemesan
